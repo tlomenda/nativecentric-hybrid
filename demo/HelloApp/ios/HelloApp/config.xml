@@ -40,12 +40,7 @@
     <feature name="Device">
         <param name="ios-package" value="CDVDevice" />
     </feature>
-    <feature name="SplashScreen">
-        <param name="ios-package" value="CDVSplashScreen" />
-        <param name="onload" value="true" />
-    </feature>
-    
     <feature name="DuetHybridBridge">
-        <param name="ios-package" onload="true" value="DuetHybridBridge"/>
+        <param name="ios-package" onload="true" value="DuetHybridBridge" />
     </feature>
 </widget>

@@ -49,9 +49,6 @@
         "cordova-plugin-device": {
             "PACKAGE_NAME": "my.tlapps.HelloApp"
         },
-        "cordova-plugin-splashscreen": {
-            "PACKAGE_NAME": "my.tlapps.HelloApp"
-        },
         "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "my.tlapps.HelloApp"
         }
