@@ -43,8 +43,8 @@ npm-debug.log
 /node_modules
 
 # Cordova
-/../platform/
-/../plugins/
+platform/
+plugins/
 
 # res
 resources/signing
