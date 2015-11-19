@@ -1,0 +1,62 @@
+<!--
+	Setup Native-centric Templates for Cordova and iOS and Android
+-->
+<project basedir=".">
+
+<target name="refresh-ios-project">
+
+	<!-- Replace Classes with Swift -->
+	<delete dir="${projectDir}/${projectName}/Classes" />
+	<delete dir="${projectDir}/${projectName}.xcodeproj" />
+	<delete file="${projectDir}/${projectName}/main.m" />
+	
+	<copy todir="${projectDir}/${projectName}/Classes">
+		<fileset dir="${basedir}/hybrid-ios-refresh/_PRODUCT/Classes" />
+	</copy>
+	<move file="${projectDir}/${projectName}/Classes/_PRODUCT-Bridging-Header.h" 
+		tofile="${projectDir}/${projectName}/Classes/${projectName}-Bridging-Header.h" />
+	
+	<!-- Prepare XCode Project Template -->
+	<copy todir="${projectDir}/${projectName}.xcodeproj">
+		<fileset dir="${basedir}/hybrid-ios-refresh/_PRODUCT.xcodeproj" />
+	</copy>
+	
+	<replace dir="${projectDir}" 
+		value="${projectIdentifier}" token="@@BundleIdentifier@@">
+  		<include name="**/*"/>
+	</replace>
+	
+	<replace dir="${projectDir}" 
+		value="${projectName}" token="@@AppName@@">
+  		<include name="**/*"/>
+	</replace>
+	
+	<!-- Move in the Podfile for Podification -->
+	<copy 
+		file="${basedir}/hybrid-ios-refresh/Podfile" 
+		tofile="${projectDir}/Podfile" />
+</target>
+
+<target name="refresh-android-project">            
+	<!-- Replace the gradle build file -->
+	<copy overwrite="true"
+		file="${basedir}/hybrid-android-refresh/build.gradle" 
+		tofile="${projectDir}/build.gradle" />
+	
+	<!-- Replace the MainActivity.java file -->
+	<copy overwrite="true"
+		file="${basedir}/hybrid-android-refresh/src/MainActivity.java" 
+		tofile="${projectDir}/src/${packageDir}/MainActivity.java" />
+	<replace dir="${projectDir}/src/${packageDir}" 
+		value="${packageName}" token="@@packageName@@">
+  		<include name="**/*"/>
+	</replace>
+	
+	<!-- Add layout for MainActivity with embedded Cordova -->
+	<copy overwrite="true"
+		file="${basedir}/hybrid-android-refresh/res/layout/activity_main.xml" 
+		tofile="${projectDir}/res/layout/activity_main.xml" />
+</target>
+
+</project>		
+
