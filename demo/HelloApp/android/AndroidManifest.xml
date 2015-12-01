@@ -35,9 +35,9 @@
     <application android:icon="@drawable/icon" android:label="@string/app_name"
         android:hardwareAccelerated="true" android:supportsRtl="true">
         <activity android:name="MainActivity"
-                android:label="@string/activity_name"
+                android:label="@string/lionel_hello"
                 android:launchMode="singleTop"
-                android:theme="@android:style/Theme.Black.NoTitleBar"
+                android:theme="@android:style/Theme.Holo"
                 android:windowSoftInputMode="adjustResize"
                 android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale">
             <intent-filter android:label="@string/launcher_name">

@@ -6,4 +6,7 @@
     <string name="launcher_name">@string/app_name</string>
     <!-- App label shown on the task switcher. -->
     <string name="activity_name">@string/launcher_name</string>
+
+    <!-- My Strings -->
+    <string name="lionel_hello">Lionel Richie on Android</string>
 </resources>
