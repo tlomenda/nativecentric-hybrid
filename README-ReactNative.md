@@ -16,6 +16,13 @@ The demo code is located at [./demo/HelloAppReact](./demo/HelloAppReact).
 $ npm install -g react-native-cli
 ```
 
+This will install the newest release of React Native.  At the time of writing the following versions were installed:
+
+```
+react-native-cli: 0.2.0
+react-native: 0.23.1
+```
+
 ###IDE Dev Tools
 * Xcode 7.3 or Higher
 * Android 
@@ -31,8 +38,6 @@ $ npm install -g react-native-cli
 $ apm install react
 ```  
 
-
-
 ##Key Selling Points
 * Ability to render using the platform's standard rendering APIs (eg: UIKit on iOS).
 
@@ -47,6 +52,19 @@ $ apm install react
 * Allows CSS consistent support of styling rules.  Unlike the web where CSS support varies across browsers.
 
 * React Native for iOS and Android includes support for many of the commonly used features, and React Native can support any asynchronous native API
+
+##Opiniated Views
+
+* Styled Components (inherited) OVER reuse of styles
+* Uses Component-based approach.  If ever in doubt, create a component.
+* For custom touch, PanResponder is almost always preferred over GestureResponder.
+
+##Components for Mobile (notes)
+* Supporting Touch through TouchableHighlight, PanResponder, and GestureResponder
+	* Touch:  *start, move, release*
+	*  Using *spread syntax* to add a panResponder to a view
+*  Basic Flow Control Components (TabView, NavigatorView, ListView)
+	*  
 
 ##Book:  *Learning React Native*
 
