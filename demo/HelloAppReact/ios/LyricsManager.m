@@ -58,8 +58,6 @@ RCT_EXPORT_METHOD(playNextLionelLyric) {
   dispatch_async(dispatch_get_main_queue(), ^{
     [self playNextLyricForLionel];
   });
-  
-  
 }
 RCT_EXPORT_METHOD(playNextAdeleLyric) {
   dispatch_async(dispatch_get_main_queue(), ^{
