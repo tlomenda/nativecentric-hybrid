@@ -1,12 +1,12 @@
 #!/bin/sh
 
-# Set of commands that help generate and manage various libraries, tools & 
+# Set of commands that help generate and manage various libraries, tools &
 # components to support Mobile Hybrid Development (Cordova, Android, iOS)
 #
 # Pre-requisites
 # --------------
 #
-# Apache Cordova Along with 
+# Apache Cordova Along with
 # cordova-ios and cordova-android packaging tools
 # plugman cordova plugin mgr tool
 # Ionic
@@ -20,7 +20,7 @@ CORDOVA_ANDROID_HOME=$MYDEV_HOME/devtools/cordova-android/current
 CORDOVA_IOS_HOME=$MYDEV_HOME/devtools/cordova-ios/current
 SENCHA_SDK_HOME=$MYDEV_HOME/lib/javascript/ext-6.0.0
 
-echoCommands() {	
+echoCommands() {
 	echo ""
 	echo "Directory where hybrid-dev script resides '$BASEDIR'"
 	echo ""
@@ -53,14 +53,14 @@ refreshWorkspaceIOS() {
 	echo "Refreshing iOS Workspace to Embed Cordova, Swiftify and Podify..."
 	echo ""
 	ant -buildfile $BASEDIR/templates/build.xml -DprojectDir=$PWD -DprojectIdentifier=$1 -DprojectName=$2 refresh-ios-project
-	
+
 	pod install
 }
 refreshWorkspaceAndroid() {
 	echo ""
 	echo "Refreshing Android Workspace to Embed Cordova..."
 	echo ""
-	
+
 	packageDir=$( echo "$1" | tr '.' '/')
 	ant -buildfile $BASEDIR/templates/build.xml -DprojectDir=$PWD -DpackageName=$1 -DprojectName=$2 -DpackageDir=$packageDir refresh-android-project
 }
@@ -69,7 +69,7 @@ ionicStart() {
 	echo "Starting Ionic '$2' Project for iOS & Android with App ID '$3' and App Name '$4'"
 	mkdir ./$4
 	cd ./$4
-	
+
 	ionic start html5-ionic $2
 
 	#Prepare Android Hybrid Project (Point to shared www content)
@@ -80,53 +80,53 @@ ionicStart() {
 	rm css/*
 	rm -Rf js
 	rm index.html
-	
+
 	cd ../../res/xml
 	sed 's/index.html/webSrc\/index.html/g' config.xml > config.new.xml
 	mv config.new.xml config.xml
-	
+
 	cd ./../../../
 
 	#Prepare iOS Hybrid Project (Point to shared www content)
 	echo "...Add iOS Native Platform!!"
 	$CORDOVA_IOS_HOME/bin/create ios $3 $4
 	cd ./ios/www
-	ln -s ../../html5-ionic/www webSrc 
+	ln -s ../../html5-ionic/www webSrc
 	rm css/*
 	rm -Rf js
 	rm index.html
-	
+
 	cd ../$4
 	sed 's/index.html/webSrc\/index.html/g' config.xml > config.new.xml
 	mv config.new.xml config.xml
-	
+
 	cd ./../../
-	
+
 	#Cleanup Ionic (remove ios platform and plugins from ionic folder)
 	cd ./html5-ionic
-	
+
 	echo "...Default index.html fix 'cordova.js' reference"
 	sed 's/cordova.js/..\/cordova.js/g' www/index.html > www/index.new.html
 	mv www/index.new.html www/index.html
-	
+
 	echo "...Cleaning Up Ionic Defaults!!"
 	cordova platform remove ios
-	cordova plugin remove com.ionic.keyboard
+	cordova plugin remove ionic-plugin-keyboard
 	cordova plugin remove cordova-plugin-console
 	cordova plugin remove cordova-plugin-device
 	cordova plugin remove cordova-plugin-splashscreen
 	cordova plugin remove cordova-plugin-whitelist
-	
+
 	cd ./../ios
 	refreshWorkspaceIOS $3 $4
-	
+
 	cd ./../android
 	refreshWorkspaceAndroid $3 $4
-	
+
 	#Add the Plugins to iOS and Android Projects
 	cd ./..
 	echo "...Adding Default Plugins to iOS and Android Native Platforms!!"
-	pluginAdd com.ionic.keyboard
+	pluginAdd ionic-plugin-keyboard
 	pluginAdd cordova-plugin-console
 	pluginAdd cordova-plugin-device
 	pluginAdd cordova-plugin-splashscreen
@@ -134,17 +134,17 @@ ionicStart() {
 }
 senchaStart() {
 	echo "Starting Sencha Project for iOS & Android with App ID '$2' and App Name '$3'"
-	
+
 	senchaAppName=$3
-	
+
 	mkdir ./$3
 	cd ./$3
-	
+
 	sencha generate workspace ./html5-sencha
-	
+
 	cd ./html5-sencha
 	sencha -sdk $SENCHA_SDK_HOME generate app $3 $3
-	
+
 	#Move up to project root
 	cd ./..
 
@@ -152,76 +152,76 @@ senchaStart() {
 	echo "...Add Android Native Platform!!"
 	$CORDOVA_ANDROID_HOME/bin/create android $2 $3
 	cd ./android/assets/www
-	
+
 	rm css/*
 	rm -Rf js
 	rm index.html
-	
+
 	cd ../../res/xml
 	sed "s/index.html/webSrc\/$senchaAppName\/index.html/g" config.xml > config.new.xml
 	mv config.new.xml config.xml
-	
+
 	cd ./../../../
-	
+
 	#Prepare iOS Hybrid Project (Point to shared www content)
 	echo "...Add iOS Native Platform!!"
 	$CORDOVA_IOS_HOME/bin/create ios $2 $3
 	cd ./ios/www
-	
+
 	rm css/*
 	rm -Rf js
 	rm index.html
-	
+
 	cd ../$3
 	sed "s/index.html/webSrc\/$senchaAppName\/index.html/g" config.xml > config.new.xml
 	mv config.new.xml config.xml
-	
+
 	cd ./../../
-	
+
 	cd ./html5-sencha
 	echo ""
 	echo "...Adding cordova.js to Sencha App app.json"
-	
+
 	cp -Rf $BASEDIR/templates/hybrid-sencha/app-with-cordova.json ./$3/app.json
 	cp -Rf $BASEDIR/templates/hybrid-sencha/index-with-cordova.html ./$3/index.html
-	
+
 	sed "s/@@appName@@/$senchaAppName/g" ./$3/app.json > ./$3/app.new.json
 	mv ./$3/app.new.json ./$3/app.json
-	
+
 	sed "s/@@appName@@/$senchaAppName/g" ./$3/index.html > ./$3/index.new.html
 	mv ./$3/index.new.html ./$3/index.html
-	
+
 	cd ./../ios
 	refreshWorkspaceIOS $2 $3
-	
+
 	#Fix the source URL for the default Sencha App in the Controller
 	sed "s/webSrc\/index.html/webSrc\/$senchaAppName\/index.html/g" $3/Classes/MainViewController.swift > $3/Classes/MainViewController.new.swift
 	mv $3/Classes/MainViewController.new.swift $3/Classes/MainViewController.swift
-	
+
 	cd ./../android
 	refreshWorkspaceAndroid $2 $3
-	
+
 	#Fix the source URL for the default Sencha App in the Activity
 	packageDir=$( echo "$2" | tr '.' '/')
 	echo $packageDir
 	sed "s/webSrc\/index.html/webSrc\/$senchaAppName\/index.html/g" src/$packageDir/MainActivity.java > src/$packageDir/MainActivity.new.java
 	mv src/$packageDir/MainActivity.new.java src/$packageDir/MainActivity.java
-	
+
 	#Add the Plugins to iOS and Android Projects
 	cd ./..
 	echo "...Adding Default Plugins to iOS and Android Native Platforms!!"
-	pluginAdd com.ionic.keyboard
-	pluginRemove com.ionic.keyboard
+	pluginAdd ionic-plugin-keyboard
+	pluginRemove ionic-plugin-keyboard
 	pluginAdd cordova-plugin-console
 	pluginAdd cordova-plugin-device
 	pluginAdd cordova-plugin-splashscreen
 	pluginAdd cordova-plugin-whitelist
-	
+
 	cd ./html5-sencha/$3
 	echo ""
 	echo "Build Sencha App...FINALLY!!"
 	sencha app build
-	
+
 	#Final Links to the Build Web Source for Hybrid
 	cd ../../ios/www
 	ln -s ../../html5-sencha/build/production webSrc
@@ -232,7 +232,7 @@ cordovaStart() {
 	echo "Starting Cordova Project for iOS & Android with App ID '$2' and App Name '$3'"
 	mkdir ./$3
 	cd ./$3
-	
+
 	cordova create html5-cordova $2 $3
 
 	#Prepare Android Hybrid Project (Point to shared www content)
@@ -243,46 +243,46 @@ cordovaStart() {
 	rm css/*
 	rm -Rf js
 	rm index.html
-	
+
 	cd ../../res/xml
 	sed 's/index.html/webSrc\/index.html/g' config.xml > config.new.xml
 	mv config.new.xml config.xml
-	
+
 	cd ./../../../
-	
+
 	#Prepare iOS Hybrid Project (Point to shared www content)
 	echo "...Add iOS Native Platform!!"
 	$CORDOVA_IOS_HOME/bin/create ios $2 $3
 	cd ./ios/www
-	ln -s ../../html5-cordova/www webSrc 
+	ln -s ../../html5-cordova/www webSrc
 	rm css/*
 	rm -Rf js
 	rm index.html
-	
+
 	cd ../$3
 	sed 's/index.html/webSrc\/index.html/g' config.xml > config.new.xml
 	mv config.new.xml config.xml
-	
-	
+
+
 	cd ./../../
-	
+
 	cd ./html5-cordova
-	
+
 	echo "...Default index.html fix 'cordova.js' reference"
 	sed 's/cordova.js/..\/cordova.js/g' www/index.html > www/index.new.html
 	mv www/index.new.html www/index.html
-	
+
 	cd ./../ios
 	refreshWorkspaceIOS $2 $3
-	
+
 	cd ./../android
 	refreshWorkspaceAndroid $2 $3
-	
+
 	#Add the Plugins to iOS and Android Projects
 	cd ./..
 	echo "...Adding Default Plugins to iOS and Android Native Platforms!!"
-	pluginAdd com.ionic.keyboard
-	pluginRemove com.ionic.keyboard
+	pluginAdd ionic-plugin-keyboard
+	pluginRemove ionic-plugin-keyboard
 	pluginAdd cordova-plugin-console
 	pluginAdd cordova-plugin-device
 	pluginAdd cordova-plugin-splashscreen
@@ -299,8 +299,8 @@ pluginAdd() {
   	else
   		echo "\nNo Android Platform Installed.\n"
 	fi
-	
-	
+
+
 }
 pluginRemove() {
 	if [ -d "ios" ]; then
@@ -354,4 +354,3 @@ else
 	echoCommands
 fi
 #~ END OF FILE --------------------------------------------------------------------------------
-

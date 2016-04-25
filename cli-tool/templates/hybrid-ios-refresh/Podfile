@@ -1,12 +1,10 @@
 platform	:ios, '8.0'
 
-source 'https://github.com/objectpartners/OpiSpecs.git'
 source 'https://github.com/CocoaPods/Specs.git'
 
 # Third Party Pods
 # End Third Party Pods
 
-# OPI Foundation Pods
 #--BEGIN LOCAL In-House Dependencies
 podLocal = ENV['POD_LOCAL_HOME']
 #--END LOCAL In-House Dependencies
