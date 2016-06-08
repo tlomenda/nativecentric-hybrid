@@ -1,0 +1,18 @@
+<GridLayout rows="auto, *">
+  <StackLayout row="0" height="50%">
+    <Label #helloLionelTitle text="Lionel Ritchie Hello"></Label>
+    <Label #helloLionelLyric
+      [text]="lyricForLionel"></Label>
+    <Button
+      text="Lionel Sings"
+      (tap)="playHelloByLionel()"></Button>
+  </StackLayout>
+  <StackLayout row="1">
+    <Label #helloAdeleTitle text="Adele Hello"></Label>
+    <Label #helloAdeleLyric
+      [text]="lyricForAdele"></Label>
+    <Button
+      text="Adele Sings"
+      (tap)="playHelloByAdele()"></Button>
+  </StackLayout>
+</GridLayout>
