@@ -1,17 +1,21 @@
 <GridLayout rows="auto, *">
   <StackLayout row="0" height="50%">
-    <Label #helloLionelTitle text="Lionel Ritchie Hello"></Label>
+    <Label #helloLionelTitle class="title" text="Lionel Ritchie Hello"></Label>
     <Label #helloLionelLyric
+      class="label"
       [text]="lyricForLionel"></Label>
     <Button
+      class="submit-button"
       text="Lionel Sings"
       (tap)="playHelloByLionel()"></Button>
   </StackLayout>
   <StackLayout row="1">
-    <Label #helloAdeleTitle text="Adele Hello"></Label>
+    <Label #helloAdeleTitle class="title" text="Adele Hello"></Label>
     <Label #helloAdeleLyric
+      class="label"
       [text]="lyricForAdele"></Label>
     <Button
+      class="submit-button"
       text="Adele Sings"
       (tap)="playHelloByAdele()"></Button>
   </StackLayout>
