@@ -1,0 +1,4 @@
+# NativeScript Specific
+platforms/
+node_modules/
+npm-debug.log

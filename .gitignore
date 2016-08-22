@@ -36,17 +36,6 @@ xcworkspace.projects/
 # Mac
 .DS_Store
 
-# Node
-#npm-debug.log
-node_modules/
-/node_modules
-
-# Cordova
-#platform/
-#plugins/
-#/platform
-#/plugins
-
 # res
 resources/signing
 
