@@ -21,7 +21,6 @@ DerivedData
 #
 # Add this line if you want to avoid checking in source code from Carthage dependencies.
 # Carthage/Checkouts
-
 Carthage/Build
 
 # CocoaPods
@@ -29,7 +28,6 @@ Carthage/Build
 # Pros and Cons of adding CocoaPods to .gitignore
 # http://guides.cocoapods.org/using/using-cocoapods.html#should-i-ignore-the-pods-directory-in-source-control
 #
-Podfile.lock
 Pods/
 
 #Customer
@@ -40,8 +38,8 @@ xcworkspace.projects/
 
 # Node
 #npm-debug.log
-#node_modules/
-#/node_modules
+node_modules/
+/node_modules
 
 # Cordova
 #platform/
