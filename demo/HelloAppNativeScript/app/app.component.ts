@@ -1,6 +1,6 @@
 import {Component} from "@angular/core";
 import {RouteConfig} from "@angular/router-deprecated";
-import {NS_ROUTER_DIRECTIVES, NS_ROUTER_PROVIDERS} from "nativescript-angular/router";
+import {NS_ROUTER_DIRECTIVES, NS_ROUTER_PROVIDERS} from "nativescript-angular/router-deprecated/ns-router-deprecated";
 
 import {HelloDuetPage} from "./pages/helloDuet/helloDuet.component";
 
