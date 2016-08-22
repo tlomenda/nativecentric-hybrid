@@ -13,7 +13,10 @@ Details on getting started with the Cordova/Ionic Demo can be found at [Ionic De
 ###Installing hybrid-app CLI script
 
 ## Demo App with React Native
-Details on getting started with the Cordova/Ionic Demo can be found at [React Native Demo Setup](README-ReactNative.md).
+[React Native Demo Setup](README-ReactNative.md).
+
+## Demo App with NativeScript
+[NativeScript Demo Setup](README-NativeScript.md).
 
 
 ##Conclusions of Hybrid Mobile

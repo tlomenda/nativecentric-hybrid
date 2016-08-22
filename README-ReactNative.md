@@ -19,7 +19,7 @@ $ npm install -g react-native-cli
 This will install the newest release of React Native.  At the time of writing the following versions were installed:
 
 ```
-react-native-cli: 0.2.0
+react-native-cli: 1.0.0
 react-native: 0.23.1
 ```
 
