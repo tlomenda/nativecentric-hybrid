@@ -41,6 +41,7 @@ resources/signing
 
 #AndroidStudio / Intellij Specific
 .idea
+*.iml
 out/
 
 # Built application files

@@ -4,7 +4,7 @@ This README provides details on using React Native and setting up the *HelloAppR
 ##Demo Setup
 React Native requires HomeBrew, Node, Watchman, and Flow to work.  Follow these [setup instructions](https://facebook.github.io/react-native/docs/getting-started.html) to get started.
 
-The demo code is located at [./demo/HelloAppReact](./demo/HelloAppReact).
+The demo code is located at [./demo/HelloAppReactNative](./demo/HelloAppReactNative).
 
 ###Package Dependencies
 * **Node** ([https://nodejs.org](https://nodejs.org)).  JavaScript runtime that also provides a package manager (npm) for many JavaScript libraries and packages.
@@ -37,6 +37,23 @@ react-native: 0.23.1
 ```
 $ apm install react
 ```  
+
+## Running the Demo App
+From the command-line, make sure you are in the *./demo/HelloAppReactNative* directory.
+
+```
+$ npm install
+$ cd ./ios
+$ pod install
+```
+
+* Running on iOS
+	* Open *HelloAppReact.xcworkspace* in the ./demo/HelloAppReactNative/ios directory on Xcode
+	* Run in the iOS emulator
+
+* Run on Android	
+	* Import ./demo/HelloAppReactNative/android as a Gradle project in *Android Studio*
+	* Run in the Android Emulator 
 
 ##Key Selling Points
 * Ability to render using the platform's standard rendering APIs (eg: UIKit on iOS).

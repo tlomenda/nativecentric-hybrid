@@ -1,27 +1,19 @@
 # HelloApp Demo: NativeScript
-This README provides details on using React Native and setting up the *HelloAppReact* demo app to run on your workstation.
+This README provides details on using NativeScript with TypeScript and Angular2 and setting up the *HelloAppNativeScript* demo app to run on your workstation.
+
+To get started with NativeScript:  [NativeScript Get Started](http://docs.nativescript.org/angular/tutorial/ng-chapter-0).
 
 ##Demo Setup
-React Native requires HomeBrew, Node, Watchman, and Flow to work.  Follow these [setup instructions](https://facebook.github.io/react-native/docs/getting-started.html) to get started.
+The demo code is located at [./demo/HelloAppNativeScript](./demo/HelloAppNativeScript).
 
-The demo code is located at [./demo/HelloAppReact](./demo/HelloAppReact).
+###Installing and Running
+If you have not done so, make sure you have the pre-reqs and NativeScript installed.  See [NativeScript Get Started](http://docs.nativescript.org/angular/tutorial/ng-chapter-0).
 
-###Package Dependencies
-* **Node** ([https://nodejs.org](https://nodejs.org)).  JavaScript runtime that also provides a package manager (npm) for many JavaScript libraries and packages.
-* **Watchman** ([GitHub](https://github.com/facebook/watchman)).  Watches files and triggers actions when they change.
-* **Flow** ([GitHub](https://github.com/dreamerslab/node.flow)).  A deadly simple flow control package for node.js.
+From a command-line:
 
-###Installing React Native CLI
-```
-$ npm install -g react-native-cli
-```
-
-This will install the newest release of React Native.  At the time of writing the following versions were installed:
-
-```
-react-native-cli: 0.2.0
-react-native: 0.23.1
-```
+* ```cd ./demo/HelloAppNativeScript```
+* ```tns build ios```
+* ```tns build android```
 
 ###IDE Dev Tools
 * Xcode 7.3 or Higher
@@ -32,42 +24,12 @@ react-native: 0.23.1
 	$ brew install android-sdk
 	``` 	
 	* Android Studio 2.0 or Higher.
-* **Atom** ([https://atom.io/](https://atom.io/)) with atom-react Package.  Great tool for React JSX development.
+* **Atom** ([https://atom.io/](https://atom.io/)) with atom-react Package.  Great tool for Typescript/Angular 2 development.
 
-```
-$ apm install react
-```  
+*NOTE:  The majority of code will be JS/CSS code so Atom or a Web Dev Tooling of choice will be used over XCode and Android Studio.*
 
-##Key Selling Points
-* Ability to render using the platform's standard rendering APIs (eg: UIKit on iOS).
+## Running the Demo App
+From the command-line, make sure you are in the *./demo/HelloAppNativeScript* directory.
 
-* React Native also has the potential to positively impact your product release cycle. For instance, Apple permits JavaScript-based changes to an app’s behavior to be loaded over the air with no additional review cycle necessary.
-
-* Native Bridge to Render to native platform
-
-* JSX Combines JavaScript and Markup in one file (separation of concerns NOT technology).
-
-* Relies on CSS Flexbox for Layout
-
-* Allows CSS consistent support of styling rules.  Unlike the web where CSS support varies across browsers.
-
-* React Native for iOS and Android includes support for many of the commonly used features, and React Native can support any asynchronous native API
-
-##Opiniated Views
-
-* Styled Components (inherited) OVER reuse of styles
-* Uses Component-based approach.  If ever in doubt, create a component.
-* For custom touch, PanResponder is almost always preferred over GestureResponder.
-
-##Components for Mobile (notes)
-* Supporting Touch through TouchableHighlight, PanResponder, and GestureResponder
-	* Touch:  *start, move, release*
-	*  Using *spread syntax* to add a panResponder to a view
-*  Basic Flow Control Components (TabView, NavigatorView, ListView)
-	*  
-
-##Book:  *Learning React Native*
-
-**About Author**
-
-Bonnie Eisenman is a software engineer at Twitter with previous experience at Codecademy, Google, and Fog Creek Software. She has spoken at several conferences on topics ranging from React to musical programming and Arduinos. In her spare time, she enjoys building electronic musical instruments, laser-cutting chocolate, and learning languages.
+* iOS:   ```tns run ios --emulator```
+* Android:  ```tns run android --emulator```
