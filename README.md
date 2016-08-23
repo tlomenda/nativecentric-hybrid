@@ -1,4 +1,6 @@
 # Native-Centric Hybrid Approach
+The essence of a *native-centric* development approach is since Users expect an **intimate UX**, Developers should get **intimate with the platforms** they are targeting while striving to **maximize code reuse**.
+
 This README contains important information about setting up the demo apps described and demo'ed during the Tech Talk.
 
 To get started clone this repository:
