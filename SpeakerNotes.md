@@ -17,21 +17,17 @@ However there are merits to this approach if care and attention is followed. Som
 * NativeScript with TypeScript/Angular 2 is an opinionated framework that takes a JavaScript first approach to cross platform mobile development
 * In the end, not sure the added complexity of mixing Cordova and Native is worth it. If you need to mix, React Native is a better option.
 
-##Speaker Bio
-Torey is a Chief Software Technologist at Object Partners Inc. specializing in Mobile & Enterprise technologies 
-with 20 years of professional experience. Most recently he has led a number of iOS-related projects, 
-applying his expertise in building integrated native iPhone/iPad business apps. 
-
-He has led the development of various mission-critical enterprise applications 
-and supports a pragmatic delivery approach utilizing iterative development and 
-continuous integration practices.
-
 ##Benefits of Attending
 * Gain insight from real-world experience on using JavaScript for hybrid/cross-platform app development
 * Gain insight on ways to mix native and web components in a mobile app
 * Information to identify which areas of a mobile app should be native vs web
 * Highlight development techniques to easily bridge JavaScript and Native components 
-*
+
+##Speaker Bio
+Torey is a Chief Software Technologist at Object Partners Inc. specializing in Mobile & Enterprise technologies with 21 years of professional experience.  He has led various large scale end-to-end applications including the development of many iOS, enterprise integrated, mobile business apps.  Most recently, he has applied his software expertise in exploring Cordova and the cross-platform JavaScript frameworks React Native and NativeScript to maximize code reuse across iOS and Android.
+
+He supports a pragmatic delivery approach utilizing iterative development and continuous integration practices.
+
 #Speaker Notes
 These notes are meant to capture the talking points and opinions that are to be conveyed to the audience.
 
