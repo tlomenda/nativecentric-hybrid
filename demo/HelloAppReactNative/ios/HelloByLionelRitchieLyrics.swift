@@ -26,9 +26,13 @@ class HelloByLionelRitchieLyrics: NSObject {
         }
         
         playNextLyric()
-        return lyrics[nextLyricIndex++]
+      
+        let index = nextLyricIndex
+        nextLyricIndex += 1
+        
+        return lyrics[index]
     }
-    
+  
     func playNextLyric() {
         let filenameTemplate = "lionel-hello-%d"
         let audioFileName:String = String(format: filenameTemplate, nextLyricIndex+1)

@@ -26,7 +26,11 @@ class HelloByAdeleLyrics: NSObject {
         }
         
         playNextLyric()
-        return lyrics[nextLyricIndex++]
+      
+        let index = nextLyricIndex
+        nextLyricIndex += 1
+      
+        return lyrics[index]
     }
     
     func playNextLyric() {
