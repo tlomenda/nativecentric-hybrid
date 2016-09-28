@@ -1,13 +1,26 @@
 package com.helloappreact;
 
+import android.os.Bundle;
+import android.view.View;
+
 import com.facebook.react.ReactActivity;
-import com.facebook.react.ReactPackage;
-import com.facebook.react.shell.MainReactPackage;
+import com.facebook.react.ReactRootView;
+import com.facebook.react.modules.core.DefaultHardwareBackBtnHandler;
 
-import java.util.Arrays;
-import java.util.List;
+public class MainActivity extends ReactActivity implements DefaultHardwareBackBtnHandler, View.OnClickListener {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
-public class MainActivity extends ReactActivity {
+        setContentView(R.layout.activity_main);
+
+        ReactRootView reactView = (ReactRootView) findViewById(R.id.reactMainView);
+
+        reactView.startReactApplication(getReactInstanceManager(), "HelloApp", null);
+
+        findViewById(R.id.nativeButton).setOnClickListener(this);
+        findViewById(R.id.webButton).setOnClickListener(this);
+    }
 
     /**
      * Returns the name of the main component registered from JavaScript.
@@ -15,26 +28,46 @@ public class MainActivity extends ReactActivity {
      */
     @Override
     protected String getMainComponentName() {
-        return "HelloAppReact";
+        return "HelloApp";
     }
 
-    /**
-     * Returns whether dev mode should be enabled.
-     * This enables e.g. the dev menu.
-     */
     @Override
-    protected boolean getUseDeveloperSupport() {
-        return BuildConfig.DEBUG;
+    public void invokeDefaultOnBackPressed() {
+        super.onBackPressed();
     }
 
-    /**
-     * A list of packages used by the app. If the app uses additional views
-     * or modules besides the default ones, add more packages here.
-     */
     @Override
-    protected List<ReactPackage> getPackages() {
-        return Arrays.<ReactPackage>asList(
-            new MainReactPackage()
-        );
+    protected void onPause() {
+        super.onPause();
+
+        getReactInstanceManager().onHostPause(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        getReactInstanceManager().onHostResume(this, this);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (getReactInstanceManager() != null) {
+            getReactInstanceManager().onBackPressed();
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+    @Override
+    public void onClick(View button) {
+        HelloPackage helloPackage = ((MainApplication) getApplication()).helloPackage;
+        LyricsManager lyricsMgr = helloPackage.lyricsManager;
+
+        if (button.getId() == R.id.nativeButton) {
+            lyricsMgr.playNextLionelLyric();
+        } else if (button.getId() == R.id.webButton) {
+            lyricsMgr.playNextAdeleLyric();
+        }
     }
 }
